@@ -1,0 +1,69 @@
+{% load static %}
+<header id="header"><!--header-->
+     <div class="header-bottom"><!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                   <div class="col-sm-3 div-logo" style="text-align: left;">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="{{ settings.logo_image.url }}" alt="Logo" class="logo-img" style="text-align: center;"/>
+                            </a>
+                        </div>
+                    </div>
+                   <div class="col-sm-9">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-right">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="/" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">خـانه</a></li>
+                                 {% if not request.user.is_authenticated %}
+                                    <li><a href="/login" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}"> ورود</a></li>
+                                    <li><a href="/register" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}"> ثبت نام</a></li>
+                                 {% else %}
+                                     <li class="dropdown"><a href="#" class="{% if request.resolver_match.url_name == 'user_edit' or request.resolver_match.url_name == 'user_password' or request.resolver_match.url_name == 'user_like' or request.resolver_match.url_name == 'paid_order' or request.resolver_match.url_name == 'detail_paid_order' or request.resolver_match.url_name == 'check_out' or request.resolver_match.url_name == 'user_account' or request.resolver_match.url_name == 'user_open_order' %}active{% endif %}">حساب کاربری<i class="fa fa-angle-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            <li><a href="/user" > پروفایل من</a></li>
+                                            <li><a href="/user/user_likes" >لیست علاقه مندی ها</a></li>
+                                            <li><a href="/paid_order" >سفارشات من</a></li>
+                                            <li><a href="/open_order" >سبـد خریـد</a></li>
+                                            <li><a href="/log_out"> خروج </a></li>
+                                        </ul>
+                                    </li>
+
+                                {% endif %}
+                                 <li><a href="/about_us" class="{% if request.resolver_match.url_name == 'about_us' %}active{% endif %}">درباره مـا</a></li>
+                                <li><a href="/contact_us" class="{% if request.resolver_match.url_name == 'contact_us' %}active{% endif %}">تماس با مـا</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+     </div><!--/header-bottom-->
+
+ <div class="header-middle"><!--header-middle-->
+        <div class="container">
+            <div class="row">
+                {% include 'shared/search_products_input_component.html' %}
+                <div class="col-sm-8 header-middle-menu">
+                    <div class="shop-menu pull-right">
+                        <ul class="nav navbar-nav">
+                            {% for category in categories %}
+                                <li><a href="{{ category.get_absolute_url }}" >{{ category.title }}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/header-middle-->
+
+
+</header><!--/header-->

@@ -1,0 +1,55 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load thumbnail %}
+{% load humanize %}
+{% block content %}
+    <section id="cart_items">
+		<div class="container">
+
+            {% if order != None and order|length > 0 %}
+			    <div class="table-responsive cart_info">
+				    <table class="table table-condensed">
+					<thead>
+						<tr class="cart_menu">
+
+							<td class="image">سبد</td>
+
+							<td class="price">تاريخ پرداخت</td>
+                            <td class="price">کد پیگیری</td>
+							<td>مبلغ كل سبد </td>
+						</tr>
+					</thead>
+					<tbody>
+                        {% for paidorder in order %}
+                            <tr>
+                                <td class="text-center pr-2">{{ forloop.counter }}</td>
+
+                                <td class="cart_description">
+                                    <a href="/detail_paid_order/{{ paidorder.id }} ">
+                                        <p>{{ paidorder.jpayment_date }}</p>
+                                    </a>
+                                </td>
+                                <td class="cart_description">
+
+                                        <p>{{ paidorder.ref_id }} </p>
+
+                                </td>
+                                 <td class="cart_description">
+
+                                        <p>{{ paidorder.get_total_price|intcomma:False }} ريال</p>
+
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+					</tbody>
+				</table>
+			    </div>
+            {% else %}
+                <div class="alert alert-warning">
+                    <p>هيچ سفارش پرداخت شده اي وجود ندارد</p>
+                </div>
+            {% endif %}
+		</div>
+	</section> <!--/#cart_items-->
+
+{% endblock %}

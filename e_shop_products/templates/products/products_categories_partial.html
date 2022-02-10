@@ -1,0 +1,15 @@
+<h2>دسته بندی کتب</h2>
+<div class="panel-group category-products" id="accordian">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><a href="/products">همه</a></h3>
+        </div>
+    </div>
+    {% for category in categories %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></h4>
+            </div>
+        </div>
+    {% endfor %}
+</div><!--/category-products-->

@@ -1,0 +1,23 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% block content %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="question-return text-center">رویه بازگشت کالا</h1>
+                    <br>
+                    <hr>
+                    <br>
+                    {% for question in questions %}
+                        <div>
+                            <h3 class="question-return">{{ question.question }}</h3>
+                             <p class="answer-return">{{ question.answer }}</p>
+                        <hr>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

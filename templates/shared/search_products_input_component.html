@@ -1,0 +1,8 @@
+<div class="col-sm-3">
+    <div class="search_box pull-left">
+        <form action="/products/search" method="get">
+            <input type="text" class="search-input" placeholder="دنبال چی می گردی؟" value="{{ request.GET.query }}" name="query"/>
+            <button type="submit" class="btn search-icon"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+default_app_config = 'e_shop_products_category.apps.EShopProductsCategoryConfig'

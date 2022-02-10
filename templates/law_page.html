@@ -1,0 +1,23 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% block content %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="question-return text-center">قوانین و مقررات سایت</h1>
+                    <br>
+                    <hr>
+                    <br>
+                    {% for law in laws %}
+                        <div>
+                            <h3 class="question-return">{{ law.title }}</h3>
+                             <p class="answer-return">{{ law.description }}</p>
+                       <hr>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

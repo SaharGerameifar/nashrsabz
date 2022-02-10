@@ -1,0 +1,117 @@
+{% load static %}
+<footer id="footer"><!--Footer-->
+    <div class="footer-Before">
+        <div class="container">
+            <div class="block-news">
+                <div class="row">
+                    <h3>با عضویت در خبـرنامه ما از تخفیفات ویـژه ما با خبـر شوید ... </h3>
+                    <div class="searchform newslatter">
+                        <input type="text" placeholder="آدرس ایمیـل شما ..."/>
+                        <button type="submit" class="btn btn-default">
+                            <i class="fa fa-arrow-circle-o-left"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="address">
+                        <img src="{% static 'images/home/map.png' %}" alt=""/>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="address">
+                        <img src="{% static 'images/home/map.png' %}" alt=""/>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="companyinfo">
+                        <h2><span>{{ settings.title }}</span></h2>
+                        <h4>درباره ما :</h4>
+                        <p>
+                            {{ settings.about_us }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-widget" >
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm-3 pull-right">
+
+                         <div class="logo">
+                            <a href="/">
+                                <img src="{{ settings.logo_image.url }}" alt="Logo" class="logo-img" style="text-align: center;"/>
+                            </a>
+                        </div>
+                        <div class="single-widget">
+                            <h2>ما را در شبکه های اجتماعی دنبال کنید.</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li style="display: inline">
+                                    <a href="https://instagram.com/{{ settings.instagram }}" style="display: inline"><i class="fa fa-instagram" style="font-size: xx-large"></i></a>
+                                    <a href="https://linkedin.com/{{ settings.linkedin }}" style="display: inline"><i class="fa fa-linkedin" style="font-size: xx-large"></i></a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="single-widget">
+                        <h2>{{ settings.title }}</h2>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a>تلفن تماس : {{ settings.phone }}</a></li>
+                            <li><a>تلفن همراه : {{ settings.mobile }}</a></li>
+                            <li><a>فکس : {{ settings.fax }}</a></li>
+                            <li><a>ایمیـل : {{ settings.email}}</a></li>
+                            <li><a>{{ settings.address }}</a></li>
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="single-widget">
+                        <h2>راهنمایی و پشتیبانی</h2>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="/faq_page/">سوالات متداول</a></li>
+                            <li><a href="/law_page/">قوانین و مقررات سایت</a></li>
+                            <li><a href="/return_us_page/">رویه بازگشت کالاا</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="single-widget">
+                        <h2>دسترسی سریع</h2>
+                        <ul class="nav nav-pills nav-stacked">
+                                <li><a href="/" class="active">خـانه</a></li>
+                                <li><a href="/about_us">درباره مـا</a></li>
+                                <li><a href="/contact_us">تماس با مـا</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom" style="direction: ltr !important;">
+        <div class="container">
+            <div class="row">
+                <p class=" copyright">
+                    {{ settings.copy_right }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</footer><!--/Footer-->

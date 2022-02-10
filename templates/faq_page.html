@@ -1,0 +1,23 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+{% block content %}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="question-return text-center">سوالات متداول</h1>
+                    <br>
+                    <hr>
+                    <br>
+                    {% for faq in faqs %}
+                        <div>
+                            <h3><strong class="question-return">سوال :</strong> <span>{{ faq.question }}</span></h3>
+                             <p><strong class="question-return">پاسخ :</strong> <span>{{ faq.answer }}</span></p>
+                        <hr>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

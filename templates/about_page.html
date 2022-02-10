@@ -1,0 +1,47 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+
+{% block content %}
+    <div id="contact-page" class="container">
+
+
+    		<div class="row">
+				<div class="col-sm-4">
+
+	    				<h2 class="title text-center">لوگـو شرکت</h2>
+						<img src="{{ settings.logo_image.url }}" class="about-img img-fluid d-block mx-auto" />
+
+    			</div>
+	    		<div class="col-sm-8">
+
+	    				<h2 class="title text-center">دربـاره ما</h2>
+						<p class="about-us">
+                            {{ settings.about_us }}
+	    				</p>
+
+	    		</div>
+	    	</div>
+
+			<div class="row">
+				<div class="col-sm-12 about-address">
+					<address>
+	    				<p>{{ settings.title }} | {{ settings.address }} | تلفن تماس : {{ settings.phone }} | تلفن همراه : {{ settings.mobile }} | فکس : {{ settings.fax }} | ایمیـل :
+                            {{ settings.email}}
+						</p>
+	    			</address>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="container">
+	    			<div class="col-sm-12" style="overflow: hidden; margin-bottom: 40px">
+                        <h2 class="title text-center">مـا اینجـا هستیـم ... </h2>    			    						<div id="gmap" class="contact-map">
+							<img src="{{ settings.location_image.url }}" alt="Map"/>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+    </div><!--/#contact-page-->
+{% endblock %}

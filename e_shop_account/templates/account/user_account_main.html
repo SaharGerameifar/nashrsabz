@@ -1,0 +1,50 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load render_partial %}
+{% load static %}
+{% block content %}
+
+   <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table table-responsive table-striped profiletable">
+                            <tbody>
+                                 <tr >
+                                       {% if profile.profile_image %}
+                                           <img src="{{ profile.profile_image.url }}" class="img-thumbnail img-responsive imgprofile img-rounded" >
+                                       {% else %}
+                                           <img src="{% static 'images/home/Avatar_2.png' %}" class="img-thumbnail img-responsive imgprofile img-rounded" >
+                                       {% endif %}
+                                 </tr>
+
+                                 <tr>
+                                    <td>نام کاربری  </td>
+                                    <td>{{ profile.user.username }}</td>
+                                </tr>
+                                <tr>
+                                    <td >نام و نام خانوادگی </td>
+                                    <td>{{ profile.user.get_full_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>ایمیل </td>
+                                    <td>{{ profile.user.email }}</td>
+                                </tr>
+                                <tr>
+                                    <td>جنسیت  </td>
+                                    {% if profile.gender %}
+                                        <td>{{ profile.get_gender_display }}</td>
+                                    {% else %}
+                                        <td></td>
+                                    {% endif %}
+                                </tr>
+
+                            </tbody>
+                        </table>
+            </div>
+            <div class="col-md-4">
+                {% render_partial 'e_shop_account.views.user_sidebar' %}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,181 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load thumbnail %}
+{% load static %}
+{% load comment_tags %}
+{% load render_partial %}
+{% load ratings %}
+{% load humanize %}
+{% block content %}
+    <section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-sm-9 padding-right">
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								{% thumbnail product.image "500x350" crop="center" as im %}
+                                          <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ product.title }}" loading="lazy" />
+                                {% endthumbnail %}
+								<h3>بزرگنمایـی</h3>
+							</div>
+							<div id="similar-product" class="carousel slide" data-ride="carousel">
+
+								  <!-- Wrapper for slides -->
+								    <div class="carousel-inner">
+                                        {% for gallery_list in galleries %}
+                                            <div class="item {{ forloop.first|yesno:'active,' }}">
+                                                {% for product_galley in gallery_list %}
+                                                    <a href="">
+                                                        {% thumbnail product_galley.image "250x200" crop="center" as im %}
+                                                                 <img src="{{ im.url }}" width="100%" height="100%" alt="{{ product.title }}" loading="lazy"/>
+                                                        {% endthumbnail %}
+                                                    </a>
+                                                {% endfor %}
+                                            </div>
+                                        {% endfor %}
+
+									</div>
+
+								  <!-- Controls -->
+								  <a class="right item-control" href="#similar-product" data-slide="next">
+									<i class="fa fa-angle-right"></i>
+								  </a>
+								  <a class="left item-control" href="#similar-product" data-slide="prev">
+									<i class="fa fa-angle-left"></i>
+								  </a>
+							</div>
+
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+
+								<div>
+									<h2>{{ product.title }}</h2>
+									<p> کد کالا : {{ product.product_Code }}</p>
+
+								</div>
+								<div>
+                                    <div>
+                                        <p> نویسنده : {{ product.author }}</p>
+                                        <p> مترجم : {{ product.translator }}</p>
+                                        <p> نوبت چاپ : {{ product.published }}</p>
+                                        <p> تاریخ چاپ : {{ product.publication_date }}</p>
+                                        <p> قطع : {{ product.ghate_book }}</p>
+                                        <p> جلد : {{ product.jeld_book }}</p>
+                                        <p>  شابک : {{ product.isbn_book }}</p>
+                                        <p>  ژانر : {{ product.book_genre }}</p>
+
+								    </div>
+                                     <div>
+                                            {% if user in product.likes.all %}
+                                                 <a href="/products_like/{{product.id}}" class="like"> <i class="fa fa-heart"></i><span>  افزودن به لیست علاقه مندی ها </span> </a>
+                                            {% else %}
+                                                 <a href="/products_like/{{product.id}}" class="like"><i class="fa fa-heart-o"></i><span>  افزودن به لیست علاقه مندی ها</span></a>
+                                            {% endif %}
+                                    </div>
+									<span>
+										<span>قیمت : {{ product.price|intcomma:False }}ريال</span>
+									</span>
+									<span>
+										<form method="post" action="/add_user_order">
+                                            {% csrf_token %}
+                                            {{ new_order_form.product_id }}
+                                             <label for="{{ new_order_form.count.id_for_label }}">{{ new_order_form.count.label }}</label>
+                                            {{ new_order_form.count }}
+                                            <button type="submit" class="btn btn-fefault cart">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                افـزودن به سبـد خریـد
+										    </button>
+                                        </form>
+									</span>
+
+
+								</div>
+								<div>
+									<p> موجود  </p>
+								</div>
+
+
+
+							</div><!--/product-information-->
+                            <div>
+                                {% ratings product %}
+
+                            </div>
+						</div>
+					</div><!--/product-details-->
+
+					<div class="category-tab shop-details-tab"><!--category-tab-->
+						<div class="col-sm-12">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#details" data-toggle="tab">جزئیات</a></li>
+								<li> <a href="#tag" data-toggle="tab">برچسب</a></li>
+								<li> <a href="#reviews" data-toggle="tab">نظرات</a></li>
+							</ul>
+						</div>
+						<div class="tab-content">
+							<div class="tab-pane fade active in" id="details" >
+                                <div class="col-sm-12">
+									<div class="productinfo text-right justify-content-center">
+											<h2>درباره کتاب :</h2>
+											<p class="description-book">{{ product.short_description|linebreaks }}</p>
+									</div>
+                                </div>
+							</div>
+
+							<div class="tab-pane fade" id="tag" >
+                                <div class="col-sm-12">
+                                    {% for tag in product_tag_list %}
+                                        <p class="badge m-2 p-3">{{ tag }}</p>
+                                    {% endfor %}
+                                </div>
+							</div>
+
+							<div class="tab-pane fade " id="reviews" >
+								<div class="col-sm-12">
+
+									{% render_comments product request %}
+{#                                     {% include_bootstrap %}#}
+
+								</div>
+							</div>
+
+						</div>
+					</div><!--/category-tab-->
+
+					<div class="recommended_items"><!--recommended_items-->
+						<h2 class="title text-center">محصولات پیشنهادی</h2>
+
+						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+                                {% for product_list in related_products %}
+								    <div class="item {{ forloop.first|yesno:'active,' }}">
+                                    {% for product in product_list %}
+									    {% include 'products/product_item_component.html' with product=product %}
+									{% endfor %}
+								</div>
+								{% endfor %}
+							</div>
+							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+								<i class="fa fa-angle-left"></i>
+							  </a>
+							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+								<i class="fa fa-angle-right"></i>
+							  </a>
+						</div>
+					</div><!--/recommended_items-->
+
+				</div>
+
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						{% render_partial 'product_categories_partial' %}
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load thumbnail %}
+{% load widget_tweaks %}
+{% load humanize %}
+{% block content %}
+    <section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">خانـه</a></li>
+				  <li> <a href="#">سبد خرید</a></li>
+				  <li class="active">افزودن آدرس</li>
+                   <li><a href="#">پرداخت</a></li>
+				</ol>
+			</div><!--/breadcrums-->
+
+		</div>
+	</section> <!--/#cart_items-->
+	<section id="do_action">
+		<div class="container">
+
+			<div class="row">
+                <div class="col-md-1"></div>
+				<div class="col-md-8">
+                    <h3>افزودن آدرس </h3>
+					<form method="post">
+                        {% csrf_token %}
+                          <div class="form-group col-md-12">
+                            <label for="{{ form.name.id_for_label }}">نام</label>
+                            {{ form.name|add_class:"form-control" }}
+                            {% for error in form.name.errors %}
+                                <p style="color: red;">{{ error }}</p>
+                            {% endfor %}
+                          </div>
+                           <div class="form-group col-md-12">
+                            <label for="{{ form.family.id_for_label }}">نام خانوادگي</label>
+                            {{ form.family|add_class:"form-control" }}
+                            {% for error in form.family.errors %}
+                                <p style="color: red;">{{ error }}</p>
+                            {% endfor %}
+                          </div>
+                          <div class="form-group col-md-12">
+                            <label for="{{ form.mobile.id_for_label }}">شماره تماس</label>
+                            {{ form.mobile|add_class:"form-control" }}
+                            {% for error in form.mobile.errors %}
+                                <p style="color: red;">{{ error }}</p>
+                            {% endfor %}
+                          </div>
+                           <div class="form-group col-md-12">
+                            <label for="{{ form.postcode.id_for_label }}"> كدپستي</label>
+                            {{ form.postcode|add_class:"form-control" }}
+                            {% for error in form.postcode.errors %}
+                                <p style="color: red;">{{ error }}</p>
+                            {% endfor %}
+                          </div>
+                           <div class="form-group col-md-12">
+                            <label for="{{ form.provance.id_for_label }}"> استان</label>
+                            {{ form.provance|add_class:"form-control" }}
+                            {% for error in form.provance.errors %}
+                                <p style="color: red;">{{ error }}</p>
+                            {% endfor %}
+                          </div>
+                         <div class="form-group col-md-12">
+                            <label for="{{ form.city.id_for_label }}"> شهر</label>
+                            {{ form.city|add_class:"form-control" }}
+                            {% for error in form.city.errors %}
+                                <p style="color: red;">{{ error }}</p>
+                            {% endfor %}
+                          </div>
+                           <div class="form-group col-md-12">
+                            <label for="{{ form.address.id_for_label }}"> آدرس</label>
+                            {{ form.address|add_class:"form-control" }}
+                            {% for error in form.address.errors %}
+                                <p style="color: red;">{{ error }}</p>
+                            {% endfor %}
+                          </div>
+                        <button type="submit" class="btn check_out ">پرداخت</button>
+                    </form>
+				</div>
+				<div class="col-md-1"></div>
+			</div>
+
+	</section><!--/#do_action-->
+    <section id="do_action">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-1">
+				</div>
+				<div class="col-md-8">
+					<div class="total_area">
+						<ul>
+							<li>مجمـوع سبـد خریـد <span>{{ total|intcomma:False }} ريال</span></li>
+							<li>هزینـه حمل و نقـل <span>رایـگان</span></li>
+							<li>مجمـوع <span>{{ total|intcomma:False }} ريال</span></li>
+						</ul>
+
+
+					</div>
+				</div>
+                <div class="col-md-1">
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
