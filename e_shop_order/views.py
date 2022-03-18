@@ -9,8 +9,6 @@ from e_shop_products.models import Product
 from zeep import Client
 from decouple import config
 
-# Create your views here.
-
 
 @login_required(login_url='/login')
 def add_user_order(request):
@@ -24,7 +22,6 @@ def add_user_order(request):
         if count < 0:
             count = 1
         product = Product.objects.get_by_id(product_id=product_id)
-
         exist_product = OrderDetail.objects.filter(product_id=product_id, order_id=order.id).first()
         if exist_product is None:
             order.orderdetail_set.create(product_id=product_id, price=product.price, count=count)
@@ -49,15 +46,12 @@ def user_open_order(request):
         context['order'] = open_order
         context['details'] = open_order.orderdetail_set.all()
         context['total'] = open_order.get_total_price()
-
     return render(request, 'order/user_open_order.html', context)
 
 
 @login_required(login_url='/login')
 def check_out(request):
-
     order = Order.objects.filter(owner_id=request.user.id, is_paid=False).first()
-
     if request.method == 'POST':
         form = OrderCheckoutForm(request.POST)
         if form.is_valid():
@@ -86,7 +80,6 @@ def check_out(request):
         'form': form,
         'total': order.get_total_price(),
     }
-
     return render(request, 'order/user_check_out.html', context)
 
 
@@ -103,7 +96,6 @@ def remove_order_detail(request, *args, **kwargs):
 
 @login_required(login_url='/login')
 def paid_order(request):
-
     paid_order: Order = Order.objects.filter(owner_id=request.user.id, is_paid=True)
     context = {
         'title': 'ليست سفارشات من',
@@ -111,8 +103,6 @@ def paid_order(request):
     }
     if paid_order is not None:
         context['order'] = paid_order
-
-
     return render(request, 'order/user_paid_order.html', context)
 
 
@@ -127,7 +117,6 @@ def detail_paid_order(request, *args, **kwargs):
         order_detail = OrderDetail.objects.filter(order=order_id, order__owner_id=request.user.id)
         context['details'] = order_detail
     return render(request, 'order/detail_paid_order.html', context)
-
 
 
 # MERCHANT = config('MERCHANT')
