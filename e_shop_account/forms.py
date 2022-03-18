@@ -91,7 +91,6 @@ class EditProfileForm(forms.ModelForm):
         fields = ['profile_image', 'gender']
 
 
-
 class EditUserForm(UserChangeForm):
     class Meta(UserChangeForm.Meta):
         model = User
