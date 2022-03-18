@@ -4,9 +4,6 @@ from e_shop_products.models import Product
 from extensions.utils import jalali_converter
 
 
-# Create your models here.
-
-
 class Order(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     is_paid = models.BooleanField(verbose_name='پرداخت شده / نشده')
