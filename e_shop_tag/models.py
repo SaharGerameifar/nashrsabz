@@ -4,7 +4,6 @@ from .utils import unique_slug_generator
 from e_shop_products.models import Product
 
 
-# Create your models here.
 class Tag(models.Model):
     title = models.CharField(max_length=120, verbose_name='عنوان')
     slug = models.SlugField(verbose_name='عنوان در url')
