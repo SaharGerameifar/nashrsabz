@@ -1,12 +1,7 @@
 from django.shortcuts import render, redirect
-
 from e_shop_contact.forms import CreateContactForm
-
 from e_shop_contact.models import ContactUs
-
 from e_shop_settings.models import SiteSettings
-
-# Create your views here.
 
 
 def contact_page(request):
