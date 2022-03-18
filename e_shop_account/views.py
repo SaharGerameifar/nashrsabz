@@ -1,23 +1,18 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-
 from e_shop_products.models import Product
 from utilities.EmailService import EmailService
 from .forms import (LoginForm, RegisterForm, EditUserForm, EditProfileForm, ChangePasswordForm)
 from django.contrib.auth import login, get_user_model, authenticate, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
-
-# Create your views here
 from .models import Profile
 
 
 def login_user(request):
     if request.user.is_authenticated:
         return redirect('/')
-
     login_form = LoginForm(request.POST or None)
     if login_form.is_valid():
         user_name = login_form.cleaned_data.get('user_name')
