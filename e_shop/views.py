@@ -1,12 +1,9 @@
 import itertools
 from django.shortcuts import render, redirect
-
 from e_shop_products_category.models import ProductCategory
 from e_shop_slider.models import Slider
 from e_shop_settings.models import SiteSettings, ReturnSettings, FAQSettings, LawSettings
 from e_shop_products.models import Product
-
-# header code behind
 from utilities.EmailService import EmailService
 
 
