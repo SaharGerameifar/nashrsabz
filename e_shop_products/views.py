@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 import itertools
 
 
-# Create your views here.
 class ProductsList(ListView):
     template_name = 'products/product_list.html'
     paginate_by = 6
@@ -42,9 +41,7 @@ def product_detail(request, *args, **kwargs):
         'related_products': grouped_related_products,
         'new_order_form': new_order_form,
         'title': product.title ,
-
     }
-
     # print(product.tag_set.all())
     return render(request, 'products/product_detail.html', context)
 
