@@ -1,6 +1,6 @@
 from django.urls import path
-
 from .views import (add_user_order, user_open_order, send_request, verify, remove_order_detail, check_out, paid_order,detail_paid_order)
+
 
 urlpatterns = [
     path('add_user_order', add_user_order),
@@ -11,5 +11,4 @@ urlpatterns = [
     path('payment', send_request, name='request'),
     path('verify/<order_id>', verify, name='verify'),
     path('remove_order_detail/<detail_id>', remove_order_detail),
-
 ]
